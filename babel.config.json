@@ -3,6 +3,6 @@
     [ "@babel/preset-env", { "targets": { "node": "current" } } ],
     [ "@babel/preset-typescript" ]
   ],
-  "plugins": [ "babel-plugin-transform-typescript-metadata"],
+  "plugins": [ "babel-plugin-transform-typescript-metadata" ],
   "sourceMaps": "inline"
 }
