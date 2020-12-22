@@ -1,8 +1,38 @@
 import express, { json, Request, Response, Router } from 'express';
 import 'reflect-metadata';
 
+class Logger {
+  readonly #instance: Logger | undefined = undefined;
+
+  constructor() {
+    if (this.#instance) {
+      return this.#instance;
+    }
+    this.#instance = this;
+  }
+
+  log(message: string) {
+    console.log(message);
+  }
+}
+
+class RootService {
+  logger = new Logger();
+
+  findAll() {
+    this.logger.log('findAll');
+    return 'Hello World';
+  }
+
+  create() {
+    this.logger.log('create')
+    return 'Create World'
+  }
+}
+
 class RootController {
-  router: Router = Router();
+  router = Router();
+  service = new RootService();
 
   constructor() {
     this.init();
@@ -16,7 +46,7 @@ class RootController {
   index() {
     return (req: Request, res: Response) => {
       res.json({
-        message: 'Hello World!'
+        message: this.service.findAll()
       });
     };
   }
@@ -24,7 +54,7 @@ class RootController {
   create() {
     return (req: Request, res: Response) => {
       res.json({
-        message: 'Create World!'
+        message: this.service.create()
       });
     };
   }
