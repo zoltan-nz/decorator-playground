@@ -1,7 +1,7 @@
 import express, { json, Request, Response, Router } from 'express';
 import 'reflect-metadata';
 
-class Logger {
+export class Logger {
   readonly #instance: Logger | undefined = undefined;
 
   constructor() {
