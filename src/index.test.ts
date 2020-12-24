@@ -1,10 +1,11 @@
-import { Logger } from './index';
+import { App, Logger } from './index';
 
 describe('Logger', () => {
   beforeEach(() => {
-    jest.spyOn(console, 'log');
+    jest.spyOn(console, 'log').mockImplementation(() => {});
   });
-  afterAll(() => {
+
+  afterAll(async () => {
     jest.restoreAllMocks();
   });
 
