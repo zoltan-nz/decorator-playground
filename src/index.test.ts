@@ -1,4 +1,4 @@
-import { App, Logger } from './index';
+import { App, Logger, RootController, RootService } from './index';
 
 describe('Logger', () => {
   beforeEach(() => {
@@ -15,3 +15,10 @@ describe('Logger', () => {
     expect(console.log).toHaveBeenCalledWith('test');
   });
 })
+
+describe('RootService', () => {
+  test('findAll', () => {
+    const service = new RootService();
+    expect(service.findAll()).toEqual('Hello World')
+  })
+});

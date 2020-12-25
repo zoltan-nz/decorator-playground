@@ -1,8 +1,12 @@
 import { App } from "./index";
 
-
 (async () => {
   const app = new App();
 
-  await app.start();
+  try {
+    await app.start();
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
 })();

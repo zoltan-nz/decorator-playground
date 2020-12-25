@@ -1,4 +1,4 @@
-import express, { json, Request, Response, Router } from 'express';
+import express, { json, Request, RequestHandler, Response, Router } from 'express';
 import { Server } from "http";
 import 'reflect-metadata';
 
@@ -17,7 +17,7 @@ export class Logger {
   }
 }
 
-class RootService {
+export class RootService {
   logger = new Logger();
 
   findAll() {
@@ -31,7 +31,7 @@ class RootService {
   }
 }
 
-class RootController {
+export class RootController {
   router = Router();
   service = new RootService();
 
@@ -44,7 +44,7 @@ class RootController {
     this.router.post('/', this.create())
   }
 
-  index() {
+  index(): RequestHandler {
     return (req: Request, res: Response) => {
       res.json({
         message: this.service.findAll()
@@ -71,12 +71,13 @@ export class App {
   rootController = new RootController();
   server: Server | undefined;
 
+  constructor() {
+    this.init();
+  }
+
   init() {
     this.expressApp.use(json());
     this.expressApp.use(this.rootController.getRoutes());
-    this.expressApp.listen(3000, () => {
-      console.log('Server started on port 3000!');
-    });
   }
 
   async start() {
