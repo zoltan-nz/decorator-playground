@@ -1,32 +1,28 @@
+import 'reflect-metadata';
 import express, { json, Request, RequestHandler, Response, Router } from 'express';
 import { Server } from "http";
-import 'reflect-metadata';
+import { autoInjectable, singleton } from "tsyringe";
 
+@singleton()
 export class Logger {
-  readonly #instance: Logger | undefined = undefined;
-
-  constructor() {
-    if (this.#instance) {
-      return this.#instance;
-    }
-    this.#instance = this;
-  }
+  constructor() {}
 
   log(message: string) {
     console.log(message);
   }
 }
 
+@autoInjectable()
 export class RootService {
-  logger = new Logger();
+  constructor(private logger?: Logger) {}
 
   findAll() {
-    this.logger.log('findAll');
+    this.logger?.log('findAll');
     return 'Hello World';
   }
 
   create() {
-    this.logger.log('create')
+    this.logger?.log('create')
     return 'Create World'
   }
 }
