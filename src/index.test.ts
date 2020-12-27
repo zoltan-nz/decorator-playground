@@ -1,4 +1,4 @@
-import supertest from "supertest";
+import supertest from 'supertest';
 import { App, Logger, RootController, RootService } from './index';
 
 describe('Logger', () => {
@@ -15,13 +15,13 @@ describe('Logger', () => {
     logger.log('test');
     expect(console.log).toHaveBeenCalledWith('test');
   });
-})
+});
 
 describe('RootService', () => {
   test('findAll', () => {
     const service = new RootService();
-    expect(service.findAll()).toEqual('Hello World')
-  })
+    expect(service.findAll()).toEqual('Hello World');
+  });
 });
 
 describe('App', () => {
@@ -38,4 +38,4 @@ describe('App', () => {
     expect(response.status).toBe(200);
     expect(response.text).toBe(JSON.stringify({ message: 'Create World' }));
   });
-})
+});

@@ -1,4 +1,4 @@
-import { App } from "./index";
+import { App } from './index';
 
 (async () => {
   const app = new App();

@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import express, { json, Request, RequestHandler, Response, Router } from 'express';
-import { Server } from "http";
-import { autoInjectable, singleton } from "tsyringe";
+import { Server } from 'http';
+import { autoInjectable, singleton } from 'tsyringe';
 
 @singleton()
 export class Logger {
@@ -22,8 +22,8 @@ export class RootService {
   }
 
   create() {
-    this.logger?.log('create')
-    return 'Create World'
+    this.logger?.log('create');
+    return 'Create World';
   }
 }
 
@@ -37,13 +37,13 @@ export class RootController {
 
   init() {
     this.router.get('/', this.index());
-    this.router.post('/', this.create())
+    this.router.post('/', this.create());
   }
 
   index(): RequestHandler {
     return (req: Request, res: Response) => {
       res.json({
-        message: this.service.findAll()
+        message: this.service.findAll(),
       });
     };
   }
@@ -51,7 +51,7 @@ export class RootController {
   create() {
     return (req: Request, res: Response) => {
       res.json({
-        message: this.service.create()
+        message: this.service.create(),
       });
     };
   }
@@ -59,7 +59,6 @@ export class RootController {
   getRoutes() {
     return this.router;
   }
-
 }
 
 export class App {
@@ -78,13 +77,15 @@ export class App {
 
   async start() {
     return new Promise((resolve, reject) => {
-      this.server = this.expressApp.listen(3000).once('listening', () => {
-        console.log('Server started on port 3000!');
-        return resolve('started');
-      }).once('error', reject);
+      this.server = this.expressApp
+        .listen(3000)
+        .once('listening', () => {
+          console.log('Server started on port 3000!');
+          return resolve('started');
+        })
+        .once('error', reject);
     });
   }
-
 
   async stop() {
     return new Promise((resolve, reject) => {
