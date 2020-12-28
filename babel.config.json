@@ -4,5 +4,6 @@
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
     ["babel-plugin-transform-typescript-metadata"]
   ],
-  "sourceMaps": "inline"
+  "sourceMaps": "inline",
+  "retainLines": true
 }

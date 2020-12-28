@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import express, { json, Request, RequestHandler, Response, Router } from 'express';
 import { Server } from 'http';
-import { autoInjectable, singleton } from 'tsyringe';
+import { autoInjectable, inject, singleton } from 'tsyringe';
 
 @singleton()
 export class Logger {

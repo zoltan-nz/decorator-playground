@@ -29,6 +29,7 @@
   },
   "scripts": {
     "dev": "babel-watch src/run.ts -e '.js,.ts'",
+    "start": "babel-node src/run.ts -x '.js,.ts'",
     "test": "jest",
     "format": "prettier --list-different --write '**/*.{ts,tsx,js,jsx,json,md,html}'",
     "format:check": "prettier --list-different --check '**/*.{ts,tsx,js,jsx,json,md,html}'"
