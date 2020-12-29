@@ -13,6 +13,7 @@ export class Logger {
 }
 
 @autoInjectable()
+@singleton()
 export class RootService {
   constructor(private logger?: Logger) {}
 
@@ -27,23 +28,23 @@ export class RootService {
   }
 }
 
+@autoInjectable()
 export class RootController {
-  router = Router();
-  service = new RootService();
+  #router = Router();
 
-  constructor() {
+  constructor(private service?: RootService) {
     this.init();
   }
 
   init() {
-    this.router.get('/', this.index());
-    this.router.post('/', this.create());
+    this.#router.get('/', this.index());
+    this.#router.post('/', this.create());
   }
 
   index(): RequestHandler {
     return (req: Request, res: Response) => {
       res.json({
-        message: this.service.findAll(),
+        message: this.service?.findAll(),
       });
     };
   }
@@ -51,13 +52,13 @@ export class RootController {
   create() {
     return (req: Request, res: Response) => {
       res.json({
-        message: this.service.create(),
+        message: this.service?.create(),
       });
     };
   }
 
   getRoutes() {
-    return this.router;
+    return this.#router;
   }
 }
 
