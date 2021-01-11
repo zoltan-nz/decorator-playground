@@ -1,5 +1,5 @@
 import supertest from 'supertest';
-import { App, Logger, RootController, RootService } from './index';
+import { App, Logger, RootService } from './index';
 
 describe('Logger', () => {
   beforeEach(() => {
@@ -37,5 +37,19 @@ describe('App', () => {
     const response = await supertest(app.expressApp).post('/');
     expect(response.status).toBe(200);
     expect(response.text).toBe(JSON.stringify({ message: 'Create World' }));
+  });
+
+  test('GET /demo', async () => {
+    const app = new App();
+    const response = await supertest(app.expressApp).get('/demo');
+    expect(response.status).toBe(200);
+    expect(response.text).toBe(JSON.stringify({}));
+  });
+
+  test('POST /demo', async () => {
+    const app = new App();
+    const response = await supertest(app.expressApp).post('/demo');
+    expect(response.status).toBe(200);
+    expect(response.text).toBe(JSON.stringify({}));
   });
 });

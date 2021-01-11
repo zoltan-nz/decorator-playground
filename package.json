@@ -7,7 +7,7 @@
   "dependencies": {
     "express": "^4.17.2",
     "reflect-metadata": "^0.1.13",
-    "tsyringe": "^4.6.0"
+    "tsyringe": "file:.yalc/tsyringe"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.7",

@@ -1,7 +1,7 @@
-import 'reflect-metadata';
 import express, { json, Request, RequestHandler, Response, Router } from 'express';
 import { Server } from 'http';
-import { autoInjectable, inject, singleton } from 'tsyringe';
+import 'reflect-metadata';
+import { autoInjectable, container, injectAll, registry, singleton } from 'tsyringe';
 
 @singleton()
 export class Logger {
@@ -28,17 +28,34 @@ export class RootService {
   }
 }
 
-@autoInjectable()
-export class RootController {
-  #router = Router();
+interface IController {
+  routes: Router;
+}
 
-  constructor(private service?: RootService) {
+export class BaseController implements IController {
+  protected router = Router();
+
+  constructor() {
     this.init();
   }
 
-  init() {
-    this.#router.get('/', this.index());
-    this.#router.post('/', this.create());
+  protected init() {}
+
+  get routes() {
+    return this.router;
+  }
+}
+
+@autoInjectable()
+@singleton()
+export class RootController extends BaseController {
+  constructor(private service?: RootService) {
+    super();
+  }
+
+  protected init() {
+    this.router.get('/', this.index());
+    this.router.post('/', this.create());
   }
 
   index(): RequestHandler {
@@ -56,24 +73,42 @@ export class RootController {
       });
     };
   }
+}
 
-  getRoutes() {
-    return this.#router;
+@autoInjectable()
+@singleton()
+export class DemoController extends BaseController {
+  constructor() {
+    super();
+  }
+
+  protected init() {
+    this.router.get('/demo', (req, res) => res.json({}));
+    this.router.post('/demo', (req, res) => res.json({}));
   }
 }
 
+@registry([
+  { token: 'IController', useClass: RootController },
+  { token: 'IController', useClass: DemoController },
+])
+export class MyRegistry {}
+
 export class App {
   expressApp = express();
-  rootController = new RootController();
   server: Server | undefined;
+  private controllers: IController[] = [];
 
   constructor() {
     this.init();
   }
 
   init() {
+    this.controllers = container.resolveAll<IController>('IController');
     this.expressApp.use(json());
-    this.expressApp.use(this.rootController.getRoutes());
+    this.controllers?.forEach(controller => {
+      this.expressApp.use(controller.routes);
+    });
   }
 
   async start() {

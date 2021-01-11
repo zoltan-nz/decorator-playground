@@ -4,3 +4,5 @@ package-lock.json
 .cache
 .idea
 .vscode
+.yalc
+yalc.lock
