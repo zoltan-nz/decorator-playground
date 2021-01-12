@@ -1,9 +1,7 @@
 import express, { json, Request, RequestHandler, Response, Router } from 'express';
 import { Server } from 'http';
 import 'reflect-metadata';
-import { autoInjectable, container, injectAll, registry, singleton } from 'tsyringe';
 
-@singleton()
 export class Logger {
   constructor() {}
 
@@ -12,10 +10,8 @@ export class Logger {
   }
 }
 
-@autoInjectable()
-@singleton()
 export class RootService {
-  constructor(private logger?: Logger) {}
+  constructor(private logger = new Logger()) {}
 
   findAll() {
     this.logger?.log('findAll');
@@ -46,10 +42,8 @@ export class BaseController implements IController {
   }
 }
 
-@autoInjectable()
-@singleton()
 export class RootController extends BaseController {
-  constructor(private service?: RootService) {
+  constructor(private service = new RootService()) {
     super();
   }
 
@@ -75,8 +69,6 @@ export class RootController extends BaseController {
   }
 }
 
-@autoInjectable()
-@singleton()
 export class DemoController extends BaseController {
   constructor() {
     super();
@@ -88,12 +80,6 @@ export class DemoController extends BaseController {
   }
 }
 
-@registry([
-  { token: 'IController', useClass: RootController },
-  { token: 'IController', useClass: DemoController },
-])
-export class MyRegistry {}
-
 export class App {
   expressApp = express();
   server: Server | undefined;
@@ -104,7 +90,7 @@ export class App {
   }
 
   init() {
-    this.controllers = container.resolveAll<IController>('IController');
+    this.controllers = [new RootController(), new DemoController()];
     this.expressApp.use(json());
     this.controllers?.forEach(controller => {
       this.expressApp.use(controller.routes);
