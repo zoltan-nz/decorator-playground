@@ -1,17 +1,10 @@
 import express, { json, Request, RequestHandler, Response, Router } from 'express';
 import { Server } from 'http';
 import 'reflect-metadata';
-
-export class Logger {
-  constructor() {}
-
-  log(message: string) {
-    console.log(message);
-  }
-}
+import { LoggerService } from "./services/logger-service";
 
 export class RootService {
-  constructor(private logger = new Logger()) {}
+  constructor(private logger = new LoggerService()) {}
 
   findAll() {
     this.logger?.log('findAll');
