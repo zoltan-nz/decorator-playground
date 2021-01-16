@@ -1,4 +1,4 @@
-import { LoggerService } from "./logger-service";
+import { LoggerService } from './logger-service';
 
 describe('Logger', () => {
   beforeEach(() => {
