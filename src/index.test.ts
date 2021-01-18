@@ -1,8 +1,8 @@
 import supertest from 'supertest';
-import { LoggerService } from './services/logger-service';
+import { LoggerService } from './common/logger-service';
 import { App, RootService } from './index';
 
-jest.mock('./services/logger-service');
+jest.mock('./common/logger-service');
 
 describe('RootService', () => {
   beforeEach(() => {

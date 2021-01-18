@@ -1,8 +1,9 @@
-import express, { json, Request, RequestHandler, Response } from 'express';
+import express, { json } from 'express';
 import { Server } from 'http';
 import 'reflect-metadata';
-import { BaseController, IController } from './controllers/base-controller';
-import { LoggerService } from './services/logger-service';
+import { BaseController, IController } from './common/base-controller';
+import { LoggerService } from './common/logger-service';
+import { RootController } from './routes/root/root-controller';
 
 export class RootService {
   constructor(private logger = new LoggerService()) {}
@@ -15,33 +16,6 @@ export class RootService {
   create() {
     this.logger?.log('create');
     return 'Create World';
-  }
-}
-
-export class RootController extends BaseController {
-  constructor(private service = new RootService()) {
-    super();
-  }
-
-  protected init() {
-    this.router.get('/', this.index());
-    this.router.post('/', this.create());
-  }
-
-  index(): RequestHandler {
-    return (req: Request, res: Response) => {
-      res.json({
-        message: this.service?.findAll(),
-      });
-    };
-  }
-
-  create() {
-    return (req: Request, res: Response) => {
-      res.json({
-        message: this.service?.create(),
-      });
-    };
   }
 }
 
