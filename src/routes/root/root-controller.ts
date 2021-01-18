@@ -1,6 +1,6 @@
 import { Request, RequestHandler, Response } from 'express';
 import { BaseController } from '../../common/base-controller';
-import { RootService } from '../../index';
+import { RootService } from './root-service';
 
 export class RootController extends BaseController {
   constructor(private service = new RootService()) {

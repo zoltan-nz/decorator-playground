@@ -1,20 +1,8 @@
 import supertest from 'supertest';
 import { LoggerService } from './common/logger-service';
-import { App, RootService } from './index';
+import { App } from './index';
 
 jest.mock('./common/logger-service');
-
-describe('RootService', () => {
-  beforeEach(() => {
-    jest.resetAllMocks();
-  });
-
-  test('findAll', () => {
-    const service = new RootService();
-    expect(service.findAll()).toEqual('Hello World');
-    expect(service['logger'].log).toHaveBeenCalledWith('findAll');
-  });
-});
 
 describe('App', () => {
   beforeEach(() => {

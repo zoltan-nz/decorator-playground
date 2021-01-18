@@ -2,22 +2,7 @@ import express, { json } from 'express';
 import { Server } from 'http';
 import 'reflect-metadata';
 import { BaseController, IController } from './common/base-controller';
-import { LoggerService } from './common/logger-service';
 import { RootController } from './routes/root/root-controller';
-
-export class RootService {
-  constructor(private logger = new LoggerService()) {}
-
-  findAll() {
-    this.logger?.log('findAll');
-    return 'Hello World';
-  }
-
-  create() {
-    this.logger?.log('create');
-    return 'Create World';
-  }
-}
 
 export class DemoController extends BaseController {
   constructor() {
