@@ -1,6 +1,6 @@
 import supertest from 'supertest';
+import { App } from './app';
 import { LoggerService } from './common/logger-service';
-import { App } from './index';
 
 jest.mock('./common/logger-service');
 

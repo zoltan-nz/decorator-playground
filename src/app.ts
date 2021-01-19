@@ -1,19 +1,9 @@
 import express, { json } from 'express';
 import { Server } from 'http';
 import 'reflect-metadata';
-import { BaseController, IController } from './common/base-controller';
+import { IController } from './common/base-controller';
+import { DemoController } from './routes/root/demo-controller';
 import { RootController } from './routes/root/root-controller';
-
-export class DemoController extends BaseController {
-  constructor() {
-    super();
-  }
-
-  protected init() {
-    this.router.get('/demo', (req, res) => res.json({}));
-    this.router.post('/demo', (req, res) => res.json({}));
-  }
-}
 
 export class App {
   expressApp = express();
