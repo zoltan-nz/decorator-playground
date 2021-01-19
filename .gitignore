@@ -3,3 +3,4 @@ coverage
 dist
 yalc.lock
 .yalc
+yarn-error.log

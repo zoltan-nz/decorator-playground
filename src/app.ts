@@ -2,7 +2,7 @@ import express, { json } from 'express';
 import { Server } from 'http';
 import 'reflect-metadata';
 import { IController } from './common/base-controller';
-import { DemoController } from './routes/root/demo-controller';
+import { DemoController } from './routes/demo/demo-controller';
 import { RootController } from './routes/root/root-controller';
 
 export class App {
@@ -17,7 +17,7 @@ export class App {
   init() {
     this.controllers = [new RootController(), new DemoController()];
     this.expressApp.use(json());
-    this.controllers?.forEach(controller => {
+    this.controllers?.forEach((controller) => {
       this.expressApp.use(controller.routes);
     });
   }
