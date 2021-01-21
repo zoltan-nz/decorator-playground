@@ -14,6 +14,7 @@
     "emitDecoratorMetadata": true,
     "resolveJsonModule": true,
     "noEmit": true,
-    "inlineSourceMap": true
+    "inlineSourceMap": true,
+    "rootDir": "./src"
   }
 }

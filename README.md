@@ -17,3 +17,11 @@ $ yarn add -D @babel/cli @babel/core @babel/node @babel/preset-env @babel/preset
   "sourceMaps": "inline"
 }
 ```
+
+## Database
+
+Create a production database in mysql:
+
+```mysql
+DROP DATABASE IF EXISTS decorator_playground; CREATE DATABASE decorator_playground CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```

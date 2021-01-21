@@ -4,3 +4,6 @@ dist
 yalc.lock
 .yalc
 yarn-error.log
+.env
+*.sqlite
+*.sqlite3

@@ -1,26 +1,34 @@
-// Update with your config settings.
-
+import dotenv from 'dotenv';
+import { Knex } from 'knex';
 import { env } from 'node:process';
+import { Environment } from './src/models/environment';
 
-module.exports = {
+dotenv.config();
+
+type ConfigType = { [Property in Environment]: Knex.Config };
+
+const config: ConfigType = {
   test: {
-    client: 'sqlite3',
+    client: 'better-sqlite3',
     connection: {
-      filename: './test.sqlite3',
+      filename: './test.sqlite',
     },
+    useNullAsDefault: true,
   },
 
   development: {
-    client: 'sqlite3',
+    client: 'better-sqlite3',
     connection: {
-      filename: './dev.sqlite3',
+      filename: './dev.sqlite',
     },
+    useNullAsDefault: true,
+    debug: true,
   },
 
   production: {
-    client: 'mysql',
+    client: 'mysql2',
     connection: {
-      database: 'decorator-playground',
+      database: 'decorator_playground',
       user: env.DB_USER,
       password: env.DB_PASSWORD,
     },
@@ -30,8 +38,9 @@ module.exports = {
     },
     migrations: {
       tableName: 'knex_migrations',
+      extension: 'ts',
     },
   },
-
-  debug: true,
 };
+
+export default config;
