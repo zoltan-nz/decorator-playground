@@ -7,11 +7,7 @@ export interface IController {
 export class BaseController implements IController {
   protected router = Router();
 
-  constructor() {
-    this.init();
-  }
-
-  protected init() {}
+  constructor() {}
 
   get routes() {
     return this.router;

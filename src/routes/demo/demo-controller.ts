@@ -1,12 +1,24 @@
+import { NextFunction, Request, Response } from 'express';
 import { BaseController } from '../../common/base-controller';
 
 export class DemoController extends BaseController {
   constructor() {
     super();
+    this.init();
   }
 
-  protected init() {
-    this.router.get('/demo', (req, res) => res.json({}));
-    this.router.post('/demo', (req, res) => res.json({}));
+  init() {
+    this.router.get('/demo', this.index);
+    this.router.post('/demo', this.create);
   }
+
+  index = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    res.status(200);
+    res.json({ message: 'Hello Demo!' });
+  };
+
+  create = async (req: Request<{}, {}, { message: string }>, res: Response<{ message: string }>): Promise<void> => {
+    res.status(200);
+    res.json({ message: req.body.message });
+  };
 }

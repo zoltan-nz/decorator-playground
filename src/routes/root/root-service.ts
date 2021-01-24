@@ -8,8 +8,8 @@ export class RootService {
     return 'Hello World';
   }
 
-  create() {
-    this.logger?.log('create');
-    return 'Create World';
+  create(message: string) {
+    this.logger?.log(`create: ${message}`);
+    return message;
   }
 }
