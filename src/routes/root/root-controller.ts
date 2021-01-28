@@ -13,12 +13,12 @@ export class RootController extends BaseController {
     this.router.post('/', this.create);
   }
 
-  index = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  index = async (req: Request, res: Response): Promise<void> => {
     res.status(200);
     res.json({ message: this.service?.findAll() });
   };
 
-  create = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  create = async (req: Request, res: Response): Promise<void> => {
     res.status(200);
     res.json({ message: this.service?.create(req.body.message) });
   };

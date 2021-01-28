@@ -93,3 +93,6 @@ DELETE /api/categories/:id
   ]
 }
 ```
+
+Use knex and Objection.js to manage the database.
+
