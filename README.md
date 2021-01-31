@@ -31,6 +31,7 @@ DROP DATABASE IF EXISTS decorator_playground; CREATE DATABASE decorator_playgrou
 For CRUD interface demo, let's create a basic point of sales API.
 
 Categories and products:
+
 - cakes
   - carrot cake
   - chocolate cake
@@ -53,6 +54,7 @@ Categories and products:
 Products: name, price, category, description, and image.
 
 User management
+
 - login/logout
 - register
 - permissions, roles
@@ -96,3 +98,4 @@ DELETE /api/categories/:id
 
 Use knex and Objection.js to manage the database.
 
+## Add eslint
