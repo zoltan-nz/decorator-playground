@@ -12,7 +12,7 @@ export class DemoController extends BaseController {
     this.router.post('/demo', this.create);
   }
 
-  index = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  index = async (req: Request, res: Response): Promise<void> => {
     res.status(200);
     res.json({ message: 'Hello Demo!' });
   };

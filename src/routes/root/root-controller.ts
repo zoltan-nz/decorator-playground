@@ -1,4 +1,4 @@
-import { NextFunction, Request, RequestHandler, Response } from 'express';
+import { Request, Response } from 'express';
 import { BaseController } from '../../common/base-controller';
 import { RootService } from './root-service';
 

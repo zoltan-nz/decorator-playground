@@ -9,6 +9,10 @@ export class BaseController implements IController {
 
   constructor() {}
 
+  protected init() {
+    throw new Error('Init method is not implemented');
+  }
+
   get routes() {
     return this.router;
   }
