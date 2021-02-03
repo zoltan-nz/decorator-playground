@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import { Knex } from 'knex';
 import { env } from 'node:process';
-import { Environment } from './src/models/environment';
+import { Environment } from "./src/models/environment";
 
 dotenv.config();
 

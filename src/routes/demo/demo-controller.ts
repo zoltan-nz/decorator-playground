@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 import { BaseController } from '../../common/base-controller';
 
 export class DemoController extends BaseController {
@@ -17,7 +17,7 @@ export class DemoController extends BaseController {
     res.json({ message: 'Hello Demo!' });
   };
 
-  create = async (req: Request<{}, {}, { message: string }>, res: Response<{ message: string }>): Promise<void> => {
+  create = async (req: Request<Record<string, unknown>, Record<string, unknown>, { message: string }>, res: Response<{ message: string }>): Promise<void> => {
     res.status(200);
     res.json({ message: req.body.message });
   };

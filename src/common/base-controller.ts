@@ -4,10 +4,8 @@ export interface IController {
   routes: Router;
 }
 
-export class BaseController implements IController {
+export abstract class BaseController implements IController {
   protected router = Router();
-
-  constructor() {}
 
   protected init() {
     throw new Error('Init method is not implemented');
