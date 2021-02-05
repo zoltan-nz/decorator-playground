@@ -16,6 +16,6 @@
     "noEmit": true,
     "inlineSourceMap": true,
     "rootDir": "./",
-    "baseUrl": "./",
+    "baseUrl": "./"
   }
 }

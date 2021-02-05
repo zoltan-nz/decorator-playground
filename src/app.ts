@@ -2,8 +2,8 @@ import express, { json, RequestHandler } from 'express';
 import { Server } from 'http';
 import 'reflect-metadata';
 import { IController } from './common/base-controller';
-import { RootController } from './routes/root/root-controller';
 import { DemoController } from './routes/demo/demo-controller';
+import { RootController } from './routes/root/root-controller';
 
 export class App {
   expressApp = express();
