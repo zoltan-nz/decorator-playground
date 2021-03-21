@@ -38,21 +38,26 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jest": "^26.1.0",
     "eslint-plugin-node": "^11.1.0",
+    "eslint-watch": "^8.0.0",
     "jest": "^27.5.1",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.5.1",
     "supertest": "^6.2.2",
     "typescript": "^4.5.5"
   },
   "scripts": {
-    "dev": "babel-watch src/run.ts -e '.js,.ts'",
+    "dev": "run-p *:watch -c -l",
+    "start:watch": "babel-watch src/run.ts -e '.js,.ts'",
     "start": "babel-node src/run.ts -x '.js,.ts'",
     "test": "jest",
+    "test:watch": "CI=true jest --ci --watch",
     "format": "prettier --list-different --write '**/*.{ts,tsx,js,jsx,json,md,html}'",
     "format:check": "prettier --list-different --check '**/*.{ts,tsx,js,jsx,json,md,html}'",
-    "lint": "eslint . --format=codeframe"
+    "lint": "eslint . --format=codeframe",
+    "lint:watch": "esw . --format=codeframe --watch"
   },
   "engines": {
-    "node": ">=16.13.2",
+    "node": ">=16.14.0",
     "yarn": " >= 1.22.17"
   }
 }

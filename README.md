@@ -8,7 +8,7 @@
 $ yarn add -D @babel/cli @babel/core @babel/node @babel/preset-env @babel/preset-typescript babel-watch babel-plugin-transform-typescript-metadata
 ```
 
-2. Add `babel.config.json` to your project root:
+2. Add `babel.config.js` to your project root:
 
 ```json
 {
