@@ -1,3 +1,4 @@
+import { exit } from 'process';
 import 'reflect-metadata';
 import { App } from './app';
 
@@ -9,6 +10,7 @@ import { App } from './app';
     await app.start();
   } catch (err) {
     console.error(err);
+    exit(1)
     throw err;
   }
 })();

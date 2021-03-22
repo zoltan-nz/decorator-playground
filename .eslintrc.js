@@ -1,6 +1,6 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['jest', 'import', '@typescript-eslint'],
+  plugins: ['jest', 'import', '@typescript-eslint', 'node'],
   env: {
     es2022: true,
     node: true,
